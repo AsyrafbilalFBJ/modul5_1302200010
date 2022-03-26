@@ -22,7 +22,7 @@ namespace modul5_1302200010
         }
         public SayaTubeVideo(String a, int b)
         {
-            Debug.Assert(a.Length <= 100 && a.Length != null, "Karakter Judul kurang dari 100 dan tidak boleh kosong");
+            Debug.Assert(a.Length <= 200 && a.Length != null, "Karakter Judul maksimal adalah 200 dan tidak boleh kosong");
             Random rnd = new Random();
             id = rnd.Next(0, 100000);
             string dig5 = id.ToString("D5");
@@ -31,7 +31,7 @@ namespace modul5_1302200010
         }
         public int increasePlayCount(int a)
         {
-            Debug.Assert(a <= 10000000, "Maksimal play count adalah 10.000.000");
+            Debug.Assert(a>=0 && a <= 25000000, "Maksimal play count adalah 25.000.000");
             Debug.Assert(a <= int.MaxValue);
             try
             {
@@ -58,6 +58,7 @@ namespace modul5_1302200010
         public String username { get; set; }
         public SayaTubeUser(String a)
         {
+            Debug.Assert(a.Length <= 100 && a.Length != null, "Karakter Username maksimal adalah 100 dan tidak boleh kosong");
             username = a;
             uploadedVideos = new List<SayaTubeVideo>(); ;
         }
@@ -72,6 +73,7 @@ namespace modul5_1302200010
         }
         public void AddVideo(SayaTubeVideo video)
         {
+            Debug.Assert(video != null && video.GetPlaycount() <= int.MaxValue, "Video tidak boleh kosong");
             uploadedVideos.Add(video);
         }
         public void PrintAllVideoPlaycount()
